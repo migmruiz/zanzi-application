@@ -1,0 +1,29 @@
+# Play framework files
+logs
+project/project
+project/target
+tmp
+.history
+dist
+/out
+/RUNNING_PID
+
+target/
+*.class
+
+# Intellij IDEA project files
+*.iml
+.idea/
+.idea_modules
+
+# Eclipse project files
+.classpath
+.externalToolBuilders
+.project
+.settings/
+
+# Windows stuff
+Thumbs.db
+
+# logs
+logs/

@@ -1,0 +1,14 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET   /                      controllers.web.Application.index
+
+# healthCheck
+GET   /healthCheck           controllers.HealthCheckController.healthCheck
+
+GET   /api/v1/classRequest   controllers.api.v1.ClassRequestApiController.single
+
+# Map static resources from the /public folder to the /assets URL path
+GET   /assets/*file          controllers.Assets.at(path="/public", file)

@@ -1,0 +1,17 @@
+@main("Authentication") {
+  <div class="container">
+    <div class="bs-docs-section page-header">
+      <div class="row text-center">
+        <div class="page-header">
+          <h1>Authentication is Required!</h1>
+        </div>
+        <a href="@controllers.auth.routes.Google.signIn">
+          <img src="@routes.Assets.at("images/sign-in-with-google.png")">
+        </a>
+        <a href="@controllers.auth.routes.Twitter.authenticate">
+          <img src="@routes.Assets.at("images/sign-in-with-twitter.png")">
+        </a>
+      </div>
+    </div>
+  </div>
+}

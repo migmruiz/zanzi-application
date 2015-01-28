@@ -10,5 +10,13 @@ GET   /healthCheck           controllers.HealthCheckController.healthCheck
 
 GET   /api/v1/classRequest   controllers.api.v1.ClassRequestApiController.single
 
+GET   /auth                  controllers.auth.AuthController.index
+GET   /auth/signOut          controllers.auth.AuthController.signOut
+
+GET   /auth/twitter          controllers.auth.Twitter.authenticate
+
+GET   /auth/google/signIn    controllers.auth.Google.signIn
+GET   /auth/google/callback  controllers.auth.Google.callback
+
 # Map static resources from the /public folder to the /assets URL path
 GET   /assets/*file          controllers.Assets.at(path="/public", file)

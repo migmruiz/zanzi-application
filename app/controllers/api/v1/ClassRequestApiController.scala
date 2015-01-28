@@ -8,17 +8,25 @@ import play.api.libs.json._
 import play.api.mvc._
 
 object ClassRequestApiController extends Controller {
-  def single = Action {
+  def single = Action { request =>
     val dateTimeZone = DateTimeZone.forID("America/Sao_Paulo")
-    val classRequest = ClassRequest(
+    val now = DateTime.now(dateTimeZone)
+    request.getQueryString("field") match {
+      case Some(field) => Ok(Json.toJson(makeClassRequest(now, field)))
+      case None => BadRequest(Json.obj("accepted" -> false))
+    }
+  }
+
+  private def makeClassRequest(start: DateTime, field: String): ClassRequest = {
+    ClassRequest(
       dateRules = Json.arr(
         Json.obj(
-          "start" -> DateTime.now(dateTimeZone),
-          "end" -> DateTime.now(dateTimeZone).plusHours(2)
+          "start" -> start,
+          "end" -> start.plusHours(2)
         ),
         Json.obj(
-          "start" -> DateTime.now(dateTimeZone).plusDays(4),
-          "end" -> DateTime.now(dateTimeZone).plusDays(6).minusHours(2)
+          "start" -> start.plusDays(4),
+          "end" -> start.plusDays(6).minusHours(2)
         )
       ),
       location = Json.obj(
@@ -26,13 +34,11 @@ object ClassRequestApiController extends Controller {
         "number"-> 0
       ),
       scholar = Json.obj(
-        "field" -> "Humanities",
+        "field" -> field,
         "year" -> 1,
         "comments" -> Json.arr()
       ),
       studentId = 1L
     )
-    Ok(Json.toJson(classRequest)).as(JSON)
   }
-
 }

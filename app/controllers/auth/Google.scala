@@ -46,7 +46,7 @@ object Google extends Controller {
             .withSession("userEmail" -> Crypto.encryptAES(email))
         }
       }
-    }.getOrElse(Future { BadRequest("") })
+    }.getOrElse(Future.successful(BadRequest("Parameter 'code' is required.")))
   }
 
   private def postDataTokenFor(code: String) = {

@@ -46,9 +46,9 @@ object Twitter extends Controller {
       TWITTER.retrieveRequestToken(authCallback) match {
         case Right(t) => {
           // We received the unauthorized tokens in the OAuth object - store it before we proceed
-          Future {
+          Future.successful(
             Redirect(TWITTER.redirectUrl(t.token)).withSession("token" -> t.token, "secret" -> t.secret)
-          }
+          )
         }
         case Left(e) => throw e
       })
